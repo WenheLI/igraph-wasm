@@ -2,9 +2,9 @@ CC = emcc
 CXX = em++
 
 CFLAGS = -Wall -Wconversion -O3 -fPIC
-BUILD_DIR = dist/
+BUILD_DIR = libigraph/
 DEMO_DIR = demo/
-EMCCFLAGS = -s ASSERTIONS=2 -s "EXPORT_NAME=\"iGraph\"" -s MODULARIZE=1 -s DISABLE_EXCEPTION_CATCHING=0 -s NODEJS_CATCH_EXIT=0  -s WASM=1 -s ALLOW_MEMORY_GROWTH=1 -s WASMFS
+EMCCFLAGS = -s ASSERTIONS=2 -s "EXPORT_NAME=\"iGraph\"" -s MODULARIZE=1 -s DISABLE_EXCEPTION_CATCHING=0 -s NODEJS_CATCH_EXIT=0  -s WASM=1 -s ALLOW_MEMORY_GROWTH=1 -s EXPORTED_RUNTIME_METHODS=['getValue']
 
 LIB_GRAPH_BASE = ./igraph
 LIB_GRAPH = ./igraph/build/src/libigraph.a
@@ -22,7 +22,8 @@ wasm: lib/main.c libigraph
 	@echo "Building wasm"
 	rm -rf $(BUILD_DIR); 
 	mkdir -p $(BUILD_DIR);
-	$(CC) $(CFLAGS) -o $(BUILD_DIR)/libigraph.js ./lib/main.c $(LIB_BUILD_GRAPH_INCLUDE) $(LIB_GRAPH_INCLUDE)  $(LIB_GRAPH)
+	cp lib/index.d.ts $(BUILD_DIR)
+	$(CC) $(CFLAGS) $(EMCCFLAGS) -o $(BUILD_DIR)/index.js ./lib/main.c $(LIB_BUILD_GRAPH_INCLUDE) $(LIB_GRAPH_INCLUDE)  $(LIB_GRAPH)
 
 demo: demo.c libigraph
 	rm -rf $(DEMO_DIR); 
