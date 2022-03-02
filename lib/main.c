@@ -45,6 +45,47 @@ double* query_matrix(igraph_matrix_t* matrix, int idx) {
 }
 
 EMSCRIPTEN_KEEPALIVE
+void sphere_layout(igraph_t* g, igraph_matrix_t* matrix) {
+  igraph_layout_sphere(g, matrix);
+}
+
+EMSCRIPTEN_KEEPALIVE
+void grid_layout(igraph_t* g, igraph_matrix_t* matrix, long width, long height) {
+  igraph_layout_grid_3d(g, matrix, width, height);
+}
+
+// TODO most config is not setted yet
+EMSCRIPTEN_KEEPALIVE
+void fruchterman_reingold_3d(igraph_t* g, igraph_matrix_t* matrix, int niter, double start_temp) {
+  igraph_layout_fruchterman_reingold_3d(
+    g, matrix,
+    /* use_seed */ 0, niter, start_temp, /* weight */ NULL, /* min x*/ NULL,
+    /* max x*/ NULL, /* min y*/ NULL, /* max y*/ NULL, /* min z*/ NULL,
+    /* max z*/ NULL
+  );
+}
+
+EMSCRIPTEN_KEEPALIVE
+void kamada_kawai_3d(igraph_t* g, igraph_matrix_t* matrix, int maxiter, double epsilon, double kkconst) {
+  igraph_layout_kamada_kawai_3d(
+    g, matrix,
+    /* use_seed */ 0, maxiter, epsilon, kkconst, 
+    /* weight */ NULL, /* min x*/ NULL, /* max x*/ NULL, 
+    /* min y*/ NULL, /* max y*/ NULL, /* min z*/ NULL,
+    /* max z*/ NULL
+  );
+}
+
+EMSCRIPTEN_KEEPALIVE
+void drl_3d(igraph_t* g, igraph_matrix_t* matrix) {
+  igraph_layout_drl_options_t options;
+  igraph_layout_drl_3d(
+    g, matrix,
+    /* use_seed */ 0, &options, /* weight */ NULL, /* fixed x*/ NULL
+  );
+}
+
+EMSCRIPTEN_KEEPALIVE
 void free_data(double* data) {
   free(data);
 }

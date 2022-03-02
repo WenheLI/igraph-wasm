@@ -7,8 +7,8 @@ class Graph {
     private graphPointer: number = -1;
     private instance: LibIgraphModule;
     private ready: boolean = false;
-    private numOfNodes: number = 0;
-    private numofEdges: number = 0;
+    public numOfNodes: number = 0;
+    public numofEdges: number = 0;
 
     init = async () => {
         this.instance = await factory();
@@ -37,11 +37,35 @@ class Graph {
     }
 
     random3DLayout = () => {
-        if (!this.ready) {
-            throw new Error('Graph not ready');
-        }
+        this.checkReady();
         this.instance._random_3d_layout(this.graphPointer, this.matrixPointer);
     }
+
+    sphereLayout = () => {
+        this.checkReady();
+        this.instance._sphere_layout(this.graphPointer, this.matrixPointer);
+    }
+    
+    gridLayout = (width: number, height: number) => {
+        this.checkReady();
+        this.instance._grid_layout(this.graphPointer, this.matrixPointer, width, height);
+    }
+
+    fruchtermanReingold3DLayout = (niter: number, startTemp: number) => {
+        this.checkReady();
+        this.instance._fruchterman_reingold_3d(this.graphPointer, this.matrixPointer, niter, startTemp);
+    }
+
+    kamadaKawai3DLayout = (maxiter: number, epsilon: number, kkconst: number) => {
+        this.checkReady();
+        this.instance._kamada_kawai_3d(this.graphPointer, this.matrixPointer, maxiter, epsilon, kkconst);
+    }
+
+    drl3DLayout = () => {
+        this.checkReady();
+        this.instance._drl_3d(this.graphPointer, this.matrixPointer);
+    }
+
 
     private createIntArray = (data: number[]) => {
         if (!this.ready) {
@@ -68,6 +92,12 @@ class Graph {
             arr[i] = val;
         }
         return arr;
+    }
+
+    private checkReady = () => {
+        if (!this.ready) {
+            throw new Error('Graph not ready');
+        }
     }
 }
 
