@@ -11,10 +11,10 @@ export interface LibIgraphModule extends EmscriptenModule {
     _sphere_layout(graphPointer: number, matrixPointer: number): void;
 
     _query_matrix(matrixPointer: number, idx: number): number;
-    _free_data(dataPointer: number): void;
     _destory_vector(vectorsPointer: number): void;
     _destory_graph(graphPointer: number): void;
     _destory_matrix(matrixPointer: number): void;
+    
     getValue: typeof getValue;
 
 }

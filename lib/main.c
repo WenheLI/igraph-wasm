@@ -86,11 +86,6 @@ void drl_3d(igraph_t* g, igraph_matrix_t* matrix) {
 }
 
 EMSCRIPTEN_KEEPALIVE
-void free_data(double* data) {
-  free(data);
-}
-
-EMSCRIPTEN_KEEPALIVE
 void destory_graph(igraph_t* g) {
   igraph_destroy(g);
 }
