@@ -15,7 +15,7 @@ export interface LibIgraphModule extends EmscriptenModule {
     _destory_vector(vectorsPointer: number): void;
     _destory_graph(graphPointer: number): void;
     _destory_matrix(matrixPointer: number): void;
-    _getValue: typeof getValue;
+    getValue: typeof getValue;
 
 }
 

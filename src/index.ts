@@ -87,7 +87,6 @@ class Graph {
 
         const arr = new Array(length);
         for (let i = 0; i < length; i++) {
-            //@ts-ignore
             const val = this.instance.getValue(pointer + offset * i, dataType);
             arr[i] = val;
         }

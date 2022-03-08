@@ -37,7 +37,7 @@ double* query_matrix(igraph_matrix_t* matrix, int idx) {
   double* res = malloc(sizeof(double) * 3);
   double x = MATRIX(*matrix, idx, 0);
   double y = MATRIX(*matrix, idx, 1);
-  double z = MATRIX(*matrix, idx, 1);
+  double z = MATRIX(*matrix, idx, 2);
   *res = x;
   *(res + 1) = y;
   *(res + 2) = z;

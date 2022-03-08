@@ -1,0 +1,30 @@
+{
+  "name": "igraph-wasm",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "directories": {
+    "example": "example",
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/emscripten": "^1.39.6",
+    "typescript": "^4.6.2"
+  },
+  "scripts": {
+    "build": "make && npx tsc",
+    "clean": "make clean"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WenheLI/igraph-wasm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WenheLI/igraph-wasm/issues"
+  },
+  "homepage": "https://github.com/WenheLI/igraph-wasm#readme"
+}
