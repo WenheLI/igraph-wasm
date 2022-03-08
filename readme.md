@@ -1,4 +1,5 @@
 # Igraph Wasm
+[![npm version](https://badge.fury.io/js/igraph-wasm.svg)](https://badge.fury.io/js/igraph-wasm)
 
 This is an igraph wasm export that's targeting for browser and nodejs.
 
